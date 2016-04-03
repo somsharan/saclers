@@ -1,0 +1,10 @@
+<% layout('layout') -%>
+    <h3>Enter your email id to create Auth Token id to acces the data</h3>
+    <form name="createToken">
+        <input type="email" id="userEmail" name="userEmail"/><br/><br/>
+        <button type="button" onclick="getTokenId()">Get AuthToken</button>
+    </form>
+    
+    <div>
+        <p id="authId"></p>
+    </div>
