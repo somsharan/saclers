@@ -5,17 +5,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var engine = require('ejs-locals');
+
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var engine = require('ejs-locals')
+
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/scalers')
+mongoose.connect('mongodb://localhost/attendence');
 // view engine setup
-app.engine('html', engine);
+app.engine('html', engine)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
@@ -26,13 +28,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(function (req, res, next) {
-  res.contentType('application/json');
-  next();
-});
+
 
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -74,13 +73,15 @@ var server = http.createServer(app);
 
 server.listen('80');
 server.on('error', function(err){
-    console.log('handel errors', err)
+    console.log('show error', err)
 });
-server.on('listening', function(){
+server.on('listening', onListening);
+
+function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   console.log('Listening on ' + bind);
+}
 
-});

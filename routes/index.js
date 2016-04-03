@@ -1,6 +1,9 @@
 var express = require('express');
+<<<<<<< HEAD
 var jwt = require('jwt-simple');
 var token = require('../model/token');
+=======
+>>>>>>> 6e99b2a29297368fb08542ecbcd239c7716836b3
 var emp = require('../model/emp');
 var router = express.Router();
 
@@ -9,6 +12,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+<<<<<<< HEAD
 /* GET token page. */
 router.get('/getToken', function(req, res, next) {
   res.render('getToken', { title: 'Express' });
@@ -29,12 +33,22 @@ router.post('/api/createTokenId', function(req, res, next) {
     tokenData.save(function(err, tokenInfo){console.log(err, tokenInfo,'data to save')
         if(!err) {
             return res.json({success: true, data: tokenInfo})
+=======
+/* Validate employee for the app. */
+router.post('/api/validateEmp', function(req, res, next) {
+    var employeeId = req.body.empid;
+    var employeePass = req.body.empPass;
+    emp.findOne({empId: employeeId}, function(err, empData){
+        if(!err) {
+            return res.json({success: true, data: empData})
+>>>>>>> 6e99b2a29297368fb08542ecbcd239c7716836b3
         } else {
             return res.json({success: false, data: err})
         }
     })
 });
 
+<<<<<<< HEAD
 /* get all the employees */
 router.get('/api/getEmp', function(req, res, next) {
 //    var tokenId = req.query('token');
@@ -47,12 +61,21 @@ router.get('/api/getEmp', function(req, res, next) {
     emp.find({}, function(err, empJson){
         if(!err) {
             return res.json({success: true, data: empJson})
+=======
+/* Validate employee for the app. */
+router.get('/api/getEmp', function(req, res, next) {
+    var employeeId = req.query('empid');
+    emp.findOne({empId: employeeId}, function(err, empData){
+        if(!err) {
+            return res.json({success: true, data: empData})
+>>>>>>> 6e99b2a29297368fb08542ecbcd239c7716836b3
         } else {
             return res.json({success: false, data: err})
         }
     })
 });
 
+<<<<<<< HEAD
 /* get a particular employee info */
 router.get('/api/getOneEmp', function(req, res, next) {
       var empid = req.query.empId;
@@ -119,6 +142,12 @@ router.get('/api/removeEmp', function(req, res, next) {
             return res.json({success: false, data: err});
         }
     })
+=======
+
+/* GET token page. */
+router.get('/getToken', function(req, res, next) {
+  res.render('getToken', { title: 'Express' });
+>>>>>>> 6e99b2a29297368fb08542ecbcd239c7716836b3
 });
 
 
