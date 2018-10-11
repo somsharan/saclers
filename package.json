@@ -12,10 +12,7 @@
     "ejs-locals": "^1.0.2",
     "express": "~4.13.1",
     "jade": "~1.11.0",
-<<<<<<< HEAD
     "jwt-simple": "^0.5.0",
-=======
->>>>>>> 6e99b2a29297368fb08542ecbcd239c7716836b3
     "mongoose": "^4.4.10",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"

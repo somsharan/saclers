@@ -9,44 +9,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET token page. */
-router.get('/getToken', function(req, res, next) {
-  res.render('getToken', { title: 'Express' });
-});
 
 
-
-var secret = 'forencodeing';
-
-/* Creates Token using jwt */
-router.post('/api/createTokenId', function(req, res, next) {    
-    var employeeId = req.body.empEmail;
-    var jwtData = {email:employeeId};
-    // encode 
-    var createdToken = jwt.encode(jwtData, secret);   
-    console.log(employeeId,'employeeId','createdToken', token)
-    var tokenData = token({tokenId: createdToken, email: employeeId})
-    tokenData.save(function(err, tokenInfo){console.log(err, tokenInfo,'data to save')
-        if(!err) {
-            return res.json({success: true, data: tokenInfo})
-             } else {
-            return res.json({success: false, data: err})
-        }
-    })
-});
-
-/* Validate employee for the app. */
-router.post('/api/validateEmp', function(req, res, next) {
-    var employeeId = req.body.empid;
-    var employeePass = req.body.empPass;
-    emp.findOne({empId: employeeId}, function(err, empData){
-        if(!err) {
-            return res.json({success: true, data: empData})
-        } else {
-            return res.json({success: false, data: err})
-        }
-    })
-});
 
 /* get all the employees */
 router.get('/api/getEmp', function(req, res, next) {
